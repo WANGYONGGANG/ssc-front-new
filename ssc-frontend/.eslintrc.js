@@ -10,7 +10,7 @@ module.exports = {
 		uni: true,
 		wx: true,
 	},
-	extends: ["plugin:vue/recommended", "eslint:recommended"],
+	extends: ["eslint:recommended"],
 	parser: "babel-eslint",
 
 	rules: {

@@ -98,14 +98,14 @@
     }
   },
   "homepage": "https://github.com/stavyan/TinyShop-UniApp#readme",
-  // "husky": {
-  //   "hooks": {
-  //     "pre-commit": "lint-staged"
-  //   }
-  // },
-  // "lint-staged": {
-  //   "src/**/*.{js,vue}": "eslint"
-  // },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+   
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stavyan/TinyShop-UniApp.git"
