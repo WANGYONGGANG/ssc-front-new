@@ -3,8 +3,8 @@ module.exports = {
     hot: true,
     clientLogLevel: 'warning',
     overlay: {
-      warnings: true,
-      errors: true
+      warnings: false,
+      errors: false
     }
   }
 }
