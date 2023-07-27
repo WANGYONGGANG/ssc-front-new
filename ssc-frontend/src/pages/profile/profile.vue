@@ -37,7 +37,7 @@
 				<list-cell
 					icon="iconqianbao"
 					:iconColor="themeColor.color"
-					@eventClick="navTo('/pages/user/account/account')"
+					@eventClick="navTo('/pages/capital/list')"
 					:title="_i18n.t('profile.myAccount')"
 				></list-cell>
 				<view class="tj-sction">

@@ -25,19 +25,6 @@
 								<text class="rf-sale-price" :class="'text-'+themeColor.name">{{ moneySymbol }}{{ item.price }}</text>
 								<text class="rf-factory-price" v-if="item.market_price > item.price">{{ moneySymbol }}{{ item.market_price }}</text>
 							</view>
-							<view class="rf-pro-pay">
-								<text
-									><text :class="'text-'+themeColor.name">{{
-										item.total_sales | filterTotalSales
-									}}</text>
-									人付款</text
-								>
-								<text
-									@tap.stop="toggleSpec(item)"
-									class="iconfont icongouwuche2"
-									:class="'text-'+themeColor.name"
-								></text>
-							</view>
 						</view>
 					</view>
 				</view>
@@ -69,53 +56,20 @@
 								<text class="rf-sale-price" :class="'text-'+themeColor.name">{{ moneySymbol }}{{ item.price }}</text>
 								<text class="rf-factory-price" v-if="item.market_price > item.price">{{ moneySymbol }}{{ item.market_price }}</text>
 							</view>
-							<view class="rf-pro-pay">
-								<text
-									><text :class="'text-'+themeColor.name">{{
-										item.total_sales | filterTotalSales
-									}}</text>
-									付款</text
-								>
-								<text
-									@tap.stop="toggleSpec(item)"
-									:class="'text-'+themeColor.name"
-									class="iconfont icongouwuche2"
-								></text>
-							</view>
+							
 						</view>
 					</view>
 				</view>
 				<!--商品列表-->
 			</block>
 		</view>
-		<!-- 规格-模态层弹窗 -->
-		<view
-			class="popup spec show"
-			v-if="specClass === 'show'"
-			@touchmove.stop.prevent="stopPrevent"
-			@tap="hideSpec"
-		>
-			<!-- 遮罩层 -->
-			<view class="mask" @tap="hideSpec"></view>
-			<view class="layer" :style="{bottom: bottom ? `${bottom}upx` : 0}" @tap.stop="stopPrevent">
-				<rf-attr-content
-					:product="productDetail"
-					@toggle="toggleSpec"
-					:showBuyBtn="true"
-				></rf-attr-content>
-			</view>
-		</view>
+
 	</view>
 </template>
 <script>
-/**
- * @des 商品列表
- *
- * @author stav stavyan@qq.com
- * @date 2020-05-15 10:49
- */
-import { productDetail, cartItemCount, cartItemCreate } from '@/api/product';
-import rfAttrContent from '@/components/rf-attr-content';
+
+
+
 import $mAssetsPath from '@/config/assets.config';
 import { mapMutations } from 'vuex';
 export default {
@@ -169,7 +123,6 @@ export default {
 		}
 	},
 	methods: {
-    ...mapMutations(['setCartNum']),
 		// 跳转详情
 		navTo(route) {
 			this.$mRouter.push({ route });
@@ -231,20 +184,7 @@ export default {
 				this.specClass = 'none';
 			}, 250);
 		},
-		// 添加商品至购物车
-		async handleCartItemCreate(skuId, cartCount) {
-			await this.$http
-				.post(`${cartItemCreate}`, {
-					sku_id: skuId,
-					num: cartCount
-				})
-				.then(async () => {
-					await this.$http.get(`${cartItemCount}`).then(async r => {
-						this.setCartNum(r.data);
-					});
-					this.$mHelper.toast('添加购物车成功');
-				});
-		}
+	
 	}
 };
 </script>
