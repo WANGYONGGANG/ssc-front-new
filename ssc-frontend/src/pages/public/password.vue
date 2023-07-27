@@ -74,13 +74,13 @@
 				<view class="register-section" v-if="type != 1">
 					又想起密码了?
 					<text @tap="navTo('/pages/public/login')">马上登录</text>
-					或者
-					<text @tap="toHome">返回主页</text>
+					<!-- 或者
+					<text @tap="toHome">返回主页</text> -->
 				</view>
-				<view class="register-section" v-else>
+				<!-- <view class="register-section" v-else>
 					不想修改了密码？
 					<text @tap="toHome">返回主页</text>
-				</view>
+				</view> -->
 			</view>
 		</block>
 		<view class="password-type-2" v-if="styleLoginType === 'two'">
@@ -157,7 +157,7 @@
 						<view @tap="navTo('/pages/public/login')" class="forget-section">
 							马上登陆
 						</view>
-						<text @tap="toHome">返回主页</text>
+						<!-- <text @tap="toHome">返回主页</text> -->
 					</view>
 					<button
 						class="confirm-btn"
@@ -171,7 +171,7 @@
 				</view>
 			</view>
 			<view class="login-type-bottom" :class="'text-' + themeColor.name">
-				{{ appName }} 版权所有
+				{{ appName }}
 			</view>
 		</view>
 	</view>

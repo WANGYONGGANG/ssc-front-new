@@ -82,8 +82,8 @@
 				<view class="register-section">
 					还没有账号?
 					<text @tap="navTo('/pages/public/register')">马上注册</text>
-					或者
-					<text @tap="toHome">返回主页</text>
+					<!-- 或者
+					<text @tap="toHome">返回主页</text> -->
 				</view>
 			</view>
 		</block>
@@ -267,7 +267,7 @@
 				</view>
 			</view>
 			<view class="login-type-bottom" :class="'text-' + themeColor.name">
-				{{ appName }} 版权所有
+				{{ appName }}
 			</view>
 		</view>
 	</view>

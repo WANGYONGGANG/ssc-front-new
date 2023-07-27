@@ -16,11 +16,11 @@
 		</view>
 		<!-- 自定义内容 -->
 		<slot />
-		<view class="back">
+		<!-- <view class="back">
 			<text class="spec-color" @tap="navTo('/pages/index/index')"
 				>返回主页</text
 			>
-		</view>
+		</view> -->
 		<slot name="refresh" />
 	</view>
 </template>
