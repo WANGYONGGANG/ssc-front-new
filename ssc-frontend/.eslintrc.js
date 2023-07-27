@@ -21,6 +21,7 @@ module.exports = {
 		"@typescript-eslint/ban-types": ["off"],
 		"vue/no-unused-components": ["off"],
 		"no-unused-vars": "off",
+		camelcase: "off",
 	},
 	overrides: [
 		{
@@ -37,6 +38,14 @@ module.exports = {
 			rules: {
 				"no-var": ["off"],
 				"@typescript-eslint/no-var-requires": ["off"],
+			},
+		},
+		{
+			files: ["**/*"],
+			rules: {
+				"camelcase": "off",
+				"no-useless-comment": "off",
+				"vue/no-unused-components": ["off"],
 			},
 		},
 	],

@@ -6,27 +6,7 @@
 		:height="0"
 		@close="hide"
 	>
-		<view class="tui-menu-box tui-padding tui-ptop">
-			<view class="tui-menu-header" :style="{ paddingTop: top + 'px' }">
-				功能直达
-			</view>
-			<view class="tui-menu-itembox">
-				<block v-for="(item, index) in topMenu" :key="index">
-					<view
-						class="tui-menu-item"
-						hover-class="tui-opcity"
-						:hover-stay-time="150"
-						@tap="navTo(item)"
-					>
-						<view class="tui-badge-box">
-							<text class="iconfont" :class="item.icon"></text>
-						</view>
-						<view class="tui-menu-text">{{ item.text }}</view>
-					</view>
-				</block>
-			</view>
-			<text @tap.stop="hide" class="iconfont iconxiangxiajiantou"></text>
-		</view>
+	
 	</rf-top-dropdown>
 </template>
 <script>
@@ -43,7 +23,6 @@ export default {
 	data() {
 		return {
 			top: this.CustomBar,
-			topMenu: this.$mConstDataConfig.menuTop
 		};
 	},
 	methods: {

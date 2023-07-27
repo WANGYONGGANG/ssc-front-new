@@ -9,10 +9,6 @@ const REFERRER = uni.getStorageSync('referrer') || '';
 const USER = uni.getStorageSync('user') || {};
 const REFRESHTOKEN = uni.getStorageSync('refreshToken') || '';
 const GLOBALCONFIG = uni.getStorageSync('globalConfig') || {};
-const CARTNUM = uni.getStorageSync('cartNum') || 0;
-const NOTIFYNUM = uni.getStorageSync('notifyNum') || 0;
-const IMHISTORY = uni.getStorageSync('imHistory') || [];
-const IMNOREAD = uni.getStorageSync('imNoRead') || 0;
 const THEMECOLOR = uni.getStorageSync('themeColor');
 const LOCALE = uni.getStorageSync('locale') || 'zh';
 
@@ -30,18 +26,7 @@ const store = new Vuex.Store({
 		networkState: 'unknown',
 		globalConfig: GLOBALCONFIG,
 		refreshToken: REFRESHTOKEN,
-		// 购物车数字角标
-		cartNum: CARTNUM,
-		// 消息中心数字角标
-		notifyNum: NOTIFYNUM,
-		// 历史聊天消息，仅保存最后100条
-		imHistory: IMHISTORY,
-		// 当前未读聊天消息数量
-		imNoRead: IMNOREAD,
-		// 当前是否处于聊天面板
-		isImPanel: false,
-		// 当前是否人工客服服务
-		isStuffService: false,
+		
 		themeColor: THEMECOLOR,
 		// 国际化
 		locale: LOCALE
@@ -104,20 +89,6 @@ const store = new Vuex.Store({
 		setNetworkState(state, provider) {
 			state.networkState = provider;
 		},
-		setCartNum(state, provider) {
-			state.cartNum = provider;
-			uni.setStorageSync('cartNum', provider);
-			if (!provider || parseInt(provider, 10) === 0) {
-				uni.removeTabBarBadge({
-					index: $mConstDataConfig.cartIndex
-				});
-			} else {
-				uni.setTabBarBadge({
-					index: $mConstDataConfig.cartIndex,
-					text: provider.toString()
-				});
-			}
-		},
 		setNotifyNum(state, provider) {
 			state.notifyNum = provider;
 			uni.setStorageSync('notifyNum', provider);
@@ -136,40 +107,7 @@ const store = new Vuex.Store({
 			state.globalConfig = provider;
 			uni.setStorageSync('globalConfig', provider);
 		},
-		addImHistory(state, provider) {
-			if (provider) {
-				let data = state.imHistory;
-				data.push(provider);
-				uni.setStorageSync('imHistory', data);
-				state.imHistory = data;
-				if (!state.isImPanel) {
-					this.commit('addImNoRead', 1);
-				}
-			}
-		},
-		clearImHistory(state) {
-			state.imHistory = [];
-			uni.setStorageSync('imHistory', []);
-			state.imNoRead = 0;
-			uni.setStorageSync('imNoRead', 0);
-		},
-		addImNoRead(state, provider) {
-			state.imNoRead = state.imNoRead + provider;
-			// if (state.imNoRead > $mAppConfig.imHisotryNum) {
-			// 	state.imNoRead = $mAppConfig.imHisotryNum;
-			// }
-			uni.setStorageSync('imNoRead', state.imNoRead);
-		},
-		setIsImPanel(state, provider) {
-			state.isImPanel = provider;
-			if (provider) {
-				state.imNoRead = 0;
-				uni.setStorageSync('imNoRead', 0);
-			}
-		},
-		setIsStuffService(state, provider) {
-			state.isStuffService = provider;
-		},
+	
 		setThemeColor(state, val) {
 			state.themeColor = val;
 			uni.setStorageSync('themeColor', val);

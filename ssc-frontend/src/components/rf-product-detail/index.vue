@@ -142,29 +142,7 @@
 				>
 					<view slot="content" :class="'text-' + themeColor.name">满{{ product.fullMail.full_mail_money }}元包邮</view>
 				</rf-item-popup>
-				<!--购买类型-->
-				<rf-item-popup
-					title="购买类型"
-					@hide="hideService"
-					:specClass="specClass"
-					@show="toggleSpec"
-				>
-					<view slot="content">
-						<text class="selected-text" v-if="currentSkuName === singleSkuText">{{ currentCartCount }} {{ product.unit || '件' }}</text>
-						<text class="selected-text" v-else-if="currentSkuName">{{ currentSkuName }} * {{ currentCartCount }}</text>
-						<text class="selected-text" v-else>请选择规格</text>
-					</view>
-					<view slot="right"><text class="iconfont iconyou"></text></view>
-					<view slot="popup" @click.stop="stopPrevent">
-						<rf-attr-content
-							:type="type"
-							:product="product"
-							:minNum="minNum"
-							:maxNum="maxNum"
-							@toggle="toggleSpec"
-							></rf-attr-content>
-					</view>
-				</rf-item-popup>
+			
 				<!--优惠券-->
 				<rf-item-popup
 					title="优惠券"
@@ -404,71 +382,7 @@
 					</view>
 				</rf-item-popup>
 			</view>
-			<!-- 评价 -->
-			<view class="eva-section" @tap="toEvaluateList">
-				<view class="e-header">
-					<text class="tit">评价({{ product.comment_num || 0 }})</text>
-					<text class="tip" v-if="product.match_ratio"
-						>好评率 {{ product.match_ratio }}%</text
-					>
-					<text class="tip" v-else>暂无评价信息</text>
-					<i class="iconfont iconyou"></i>
-				</view>
-				<view
-					class="eva-box"
-					v-if="product.evaluate && product.evaluate.length > 0"
-				>
-					<image
-						class="portrait"
-						:src="
-							(product.evaluate &&
-								product.evaluate[0] &&
-								product.evaluate[0].member_head_portrait) ||
-								headImg
-						"
-						mode="aspectFill"
-					></image>
-					<view class="right">
-						<view class="name">
-							<text>
-								{{
-									(product.evaluate &&
-										product.evaluate[0] &&
-										product.evaluate[0].member_nickname) ||
-										'匿名用户'
-								}}
-							</text>
-							<rf-rate
-								v-if="evaluateList.length > 0"
-								size="16"
-								disabled="true"
-								:value="evaluateList[0].scores"
-								:active-color="themeColor.color"
-							/>
-						</view>
-						<text class="con in2line">{{
-							(product.evaluate &&
-								product.evaluate[0] &&
-								product.evaluate[0].content) ||
-								'这个人很懒，什么都没留下~'
-						}}</text>
-						<view class="bot">
-							<text class="attr"
-								>购买类型：{{
-									(product.evaluate &&
-										product.evaluate[0] &&
-										product.evaluate[0].sku_name) ||
-										singleSkuText
-								}}</text>
-							<text class="time">{{
-								product.evaluate &&
-									product.evaluate[0] &&
-									product.evaluate[0].created_at | time
-							}}</text>
-						</view>
-					</view>
-				</view>
-			</view>
+			
 			<!--底部商品详情-->
 			<view class="detail-desc">
 				<view class="d-header">
@@ -666,9 +580,7 @@
 				poster: {},
 				promoCode: '',
 				addressList: [],
-        moneySymbol: this.moneySymbol,
 				state: 1,
-        singleSkuText: this.singleSkuText,
 				thirdPartyQrCodeImg: ''
 			};
 		},

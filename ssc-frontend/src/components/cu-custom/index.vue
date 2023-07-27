@@ -20,16 +20,14 @@
 		data() {
 			return {
 				StatusBar: this.StatusBar,
-				CustomBar: this.CustomBar
 			};
 		},
 		name: 'cu-custom',
 		computed: {
 			style() {
 				const StatusBar = this.StatusBar;
-				const CustomBar = this.CustomBar;
 				const bgImage = this.bgImage;
-				let style = `height:${CustomBar}px;padding-top:${StatusBar}px;`;
+				let style = `height:padding-top:${StatusBar}px;`;
 				if (this.bgImage) {
 					style = `${style}background-image:url(${bgImage});`;
 				}

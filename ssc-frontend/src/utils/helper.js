@@ -7,8 +7,6 @@ import appShare from '@/utils/share';
 import jweixin from '@/common/jweixin';
 import $mPayment from '@/utils/payment';
 // #endif
-import { http } from '@/utils/request';
-import { advView } from '@/api/basic';
 //常用方法集合
 export default {
 	/**
@@ -391,56 +389,5 @@ export default {
 		// #endif
 		return platformGroup;
 	},
-
-  // 广告图跳转封装
-  handleBannerNavTo(data, id, advId) {
-			let url;
-			http.get(advView, { id: advId });
-			switch (data) {
-				case 'notify_announce_view': // 公告详情
-					url = `/pages/index/notice/detail?id=${id}`;
-					break;
-				case 'product_view': // 产品详情
-					url = `/pages/product/product?id=${id}`;
-					break;
-				case 'combination_view': // 某分类下产品列表
-					url = `/pages/marketing/combination/list?id=${id}`;
-					break;
-				case 'coupon_view': // 优惠券详情
-					url = `/pages/user/coupon/detail?id=${id}`;
-					break;
-				case 'helper_view': // 站点帮助详情
-					url = '/pages/set/helper/index';
-					break;
-				case 'bargain_list': // 砍价列表
-					url = '/pages/marketing/bargain/list';
-					break;
-				case 'discount_list': // 限时折扣
-					url = '/pages/marketing/discount/list';
-					break;
-				case 'group_buy_list': // 团购列表
-					url = '/pages/marketing/group/list';
-					break;
-				case 'wholesale_list': // 拼团列表
-					url = '/pages/marketing/wholesale/list';
-					break;
-				case 'product_list_for_cate': // 某分类下产品列表
-					url = `/pages/product/list?cate_id=${id}`;
-					break;
-				case 'mini_program_live_view': // 跳转至带货直播间
-					// #ifdef MP-WEIXIN
-					url = `plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id=${[id]}`;
-					// #endif
-					// #ifndef MP-WEIXIN
-					this.toast('请从微信小程序进入直播间');
-					// #endif
-					break;
-				default:
-					break;
-			}
-			if (url) {
-				mRouter.push({ route: url });
-			}
-  }
 
 };

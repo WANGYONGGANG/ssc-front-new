@@ -67,9 +67,9 @@
 			},
 			"ios" : {
 				"privacyDescription" : {
-					"NSPhotoLibraryUsageDescription" : "商品评价",
-					"NSPhotoLibraryAddUsageDescription" : "商品评价",
-					"NSCameraUsageDescription" : "核销虚拟商品",
+					"NSPhotoLibraryUsageDescription" : "",
+					"NSPhotoLibraryAddUsageDescription" : "",
+					"NSCameraUsageDescription" : "",
 					"NSMicrophoneUsageDescription" : ""
 				}
 			},
@@ -163,7 +163,7 @@
 	"uni-app" : {
 		"scripts" : {
 			"h5-weixin" : {
-				"title" : "微信服务号",
+				"title" : "",
 				"BROWSER" : "Chrome",
 				"env" : {
 					"UNI_PLATFORM" : "h5"
@@ -191,11 +191,6 @@
 		"permission" : {
 		},
 		"plugins" : {
-			// 根据具体情况填写version(版本号)和provider(插件APPID)
-//         "live-player-plugin" : {
-//					 "version" : "1.2.5",
-//					 "provider" : "wx2b03c6e691cd7370"
-//         },
 		},
 		"uniStatistics" : {
 			"enable" : true

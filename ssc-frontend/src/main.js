@@ -25,7 +25,6 @@ import rfParser from '@/components/rf-parser';
 import rfBackTop from '@/components/rf-back-top';
 import rfTag from '@/components/rf-tag';
 import rfNavDetail from '@/components/rf-nav-detail';
-import cuCustom from '@/components/cu-custom';
 import rfBackHome from '@/components/rf-back-home';
 
 // 引入国际化语言包
@@ -65,7 +64,6 @@ Vue.component('rfParser', rfParser);
 Vue.component('rfBackTop', rfBackTop);
 Vue.component('rfTag', rfTag);
 Vue.component('rfNavDetail', rfNavDetail);
-Vue.component('cuCustom', cuCustom);
 Vue.component('rfBackHome', rfBackHome);
 
 if (process.env.NODE_ENV === 'production') {
@@ -129,9 +127,6 @@ Vue.mixin({
 	}
 });
 Vue.use(VueI18n);
-Vue.prototype.moneySymbol = $mConstDataConfig.moneySymbol;
-Vue.prototype.singleSkuText = $mConstDataConfig.singleSkuText;
-
 // 保留小数点后两位
 Vue.filter('keepTwoDecimal', value => {
   return (Math.floor((value || 0) * 100) / 100).toFixed(2);

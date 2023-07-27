@@ -56,13 +56,7 @@ export default {
 			appName: this.$mSettingConfig.appName
 		};
 	},
-	// #ifndef MP
-	onNavigationBarButtonTap(e) {
-		const index = e.index;
-		if (index === 0) {
-			this.navDetailShow = true;
-		}
-	},
+
 	// #endif
 	onPageScroll(e) {
 		this.scrollTop = e.scrollTop;

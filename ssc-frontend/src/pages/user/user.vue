@@ -23,15 +23,6 @@
 					<text class="username" v-else>登录/注册</text>
 				</view>
 			</view>
-			<!--vip信息-->
-			<view class="vip-card-box">
-				<image class="card-bg" :src="vipCardBg"></image>
-				<view class="tit">
-					<i class="iconfont iconiLinkapp-"/>
-					欢迎来到RageFrame微商城
-				</view>
-				<text class="e-m">RageFrame 版权所有</text>
-			</view>
 		</view>
 		<!-- 个人中心 内容区-->
 		<view
@@ -102,36 +93,7 @@
 				</view>
 			</view>
 
-			<!--设置中心-->
-			<view class="promotion-center">
-				<list-cell icon="iconshezhi1" iconColor="#e07472" @eventClick="navTo('/pages/set/set')"
-				           title="设置中心"></list-cell>
-				<view class="tj-sction">
-
-					<!-- 分类列表 -->
-					<view class="category-list">
-						<view
-								class="category"
-								v-for="(item, index) in settingList"
-								:key="index"
-								@tap.stop="navTo(item.url)"
-						>
-							<view v-if="item.title!=='分享'">
-								<view class="img">
-									<text class="iconfont" :style="{color: item.color}" :class="item.icon"></text>
-								</view>
-								<view class="text">{{ item.title }}</view>
-							</view>
-							<button class="share-btn" open-type="share" @tap.tap="shareToH5" v-else>
-								<view class="img">
-									<text class="iconfont" :style="{color: item.color}" :class="item.icon"></text>
-								</view>
-								<view class="text">{{ item.title }}</view>
-							</button>
-						</view>
-					</view>
-				</view>
-			</view>
+		
 		</view>
 		<!--页面加载动画-->
 		<rf-loading v-if="loading"></rf-loading>
@@ -157,7 +119,6 @@
         },
         data() {
             return {
-                settingList: this.$mConstDataConfig.settingList,
                 orderSectionList: this.$mConstDataConfig.orderSectionList,
                 amountList: this.$mConstDataConfig.amountList,
                 headImg: this.$mAssetsPath.headImg,
@@ -178,30 +139,13 @@
         // 小程序分享
         onShareAppMessage() {
             return {
-                title: '欢迎来到RageFrame商城',
+                title: '',
                 path: '/pages/index/index'
             }
         },
         async onShow() {
             // 初始化数据
             this.initData();
-        },
-        // #ifndef MP
-        onNavigationBarButtonTap(e) {
-            const index = e.index;
-            if (index === 0) {
-                this.navTo('/pages/set/set');
-            } else if (index === 1) {
-                // #ifdef APP-PLUS
-                const pages = getCurrentPages();
-                const page = pages[pages.length - 1];
-                const currentWebview = page.$getAppWebview();
-                currentWebview.hideTitleNViewButtonRedDot({
-                    index
-                });
-                // #endif
-                this.$mRouter.push({route: '/pages/index/notice/notice'});
-            }
         },
         // #endif
         methods: {
@@ -219,71 +163,22 @@
                     await this.getMemberInfo();
                 } else {
                     this.loading = false;
-                    this.resetSectionData();
                 }
             },
-            // 设置购物车数量角标
-            async initCartItemCount() {
-							if (parseInt(uni.getStorageSync('cartNum'), 10) > 0) {
-                await uni.setTabBarBadge({
-                  index: this.$mConstDataConfig.cartIndex,
-                  text: uni.getStorageSync('cartNum')
-                });
-							} else {
-                uni.removeStorageSync('cartNum');
-                uni.removeTabBarBadge({index: this.$mConstDataConfig.cartIndex});
-							}
-            },
+          
             // 获取用户信息
             async getMemberInfo() {
                 await this.$http.get(memberInfo).then(async r => {
                     this.loading = false;
                     this.userInfo = r.data;
-                    await uni.setStorageSync('cartNum', r.data.cart_num);
-                    // 获取足迹列表
-                    await this.getFootPrintList();
-                    await this.setSectionData(r.data);
-                    await this.initCartItemCount();
                 }).catch(() => {
                 	  this.hasLogin = false;
                 	  this.userInfo = {};
-                    this.resetSectionData();
                     this.loading = false;
                 });
             },
-            // 清空个人中心的各模块状态
-            resetSectionData() {
-                uni.removeTabBarBadge({index: this.$mConstDataConfig.cartIndex});
-                this.amountList[0].value = 0;
-                this.amountList[1].value = 0;
-                this.amountList[2].value = 0;
-                this.orderSectionList[0].num = 0;
-                this.orderSectionList[1].num = 0;
-                this.orderSectionList[2].num = 0;
-                this.orderSectionList[3].num = 0;
-                this.orderSectionList[4].num = 0;
-            },
-            // 给个人中心的各模块赋值
-            setSectionData(data) {
-                const orderSynthesizeNumArr = [];
-                for (let item in data.order_synthesize_num) {
-                    orderSynthesizeNumArr.push(data.order_synthesize_num[item])
-                }
-                for (let i = 0; i < this.orderSectionList.length; i++) {
-                    this.orderSectionList[i].num = orderSynthesizeNumArr[i].toString();
-                }
-                this.amountList[0].value = data.account.user_money || 0;
-                this.amountList[1].value = data.coupon_num || 0;
-                this.amountList[2].value = data.account.user_integral || 0;
-                // 更新userInfo缓存
-                uni.setStorageSync('userInfo', data);
-            },
-            // 获取足迹列表
-            async getFootPrintList() {
-                await this.$http.get(`${footPrintList}`).then(r => {
-                    this.footPrintList = r.data
-                });
-            },
+         
+           
             // 统一跳转接口,拦截未登录路由
             navTo(route) {
                 if (!route) {

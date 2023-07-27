@@ -1,10 +1,11 @@
 module.exports = {
-  devServer: {
-    hot: true,
-    clientLogLevel: 'warning',
-    overlay: {
-      warnings: false,
-      errors: false
-    }
-  }
-}
+	transpileDependencies: ["@dcloudio/uni-ui"],
+	devServer: {
+		hot: true,
+		clientLogLevel: "warning",
+		overlay: {
+			warnings: false,
+			errors: false,
+		},
+	},
+};

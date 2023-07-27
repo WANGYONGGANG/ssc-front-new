@@ -2,13 +2,11 @@
 /* eslint-disable */
 import Vue from 'vue';
 import { verifyAccessToken } from '@/api/login'
-import { mapMutations } from 'vuex';
 export default {
 	async onLaunch() {
 		await this.initData();
 	},
 	methods: {
-		...mapMutations(['setCartNum', 'setNotifyNum']),
 		// 数据初始化
 		async initData() {
 			uni.setTabBarStyle({
@@ -29,9 +27,6 @@ export default {
 				await this.handleVerifyAccessToken(token);
 			}
 			if (this.$mStore.getters.hasLogin) {
-				// 初始化购物车数量
-				this.setCartNum(uni.getStorageSync('cartNum') || 0);
-				this.setNotifyNum(uni.getStorageSync('notifyNum') || 0);
 				// #ifdef APP-PLUS
 				const info = plus.push.getClientInfo();
 				// #endif

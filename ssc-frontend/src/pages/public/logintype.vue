@@ -167,10 +167,7 @@
 							if (backToPage) {
 								if (
 									backToPage.indexOf('/pages/profile/profile') !== -1 ||
-									backToPage.indexOf('/pages/cart/cart') !== -1 ||
-									backToPage.indexOf('/pages/index/index') !== -1 ||
-									backToPage.indexOf('/pages/notify/notify') !== -1 ||
-									backToPage.indexOf('/pages/category/category') !== -1
+									backToPage.indexOf('/pages/index/index') !== -1
 								) {
 									this.$mRouter.reLaunch(JSON.parse(backToPage));
 								} else {
@@ -349,10 +346,7 @@
 							if (backToPage) {
 								if (
 									backToPage.indexOf('/pages/profile/profile') !== -1 ||
-									backToPage.indexOf('/pages/cart/cart') !== -1 ||
-									backToPage.indexOf('/pages/notify/notify') !== -1 ||
-									backToPage.indexOf('/pages/index/index') !== -1 ||
-									backToPage.indexOf('/pages/category/category') !== -1
+									backToPage.indexOf('/pages/index/index') !== -1
 								) {
 									_this.$mRouter.reLaunch(JSON.parse(backToPage));
 								} else {
@@ -426,10 +420,7 @@
 										if (backToPage) {
 											if (
 												backToPage.indexOf('/pages/profile/profile') !== -1 ||
-												backToPage.indexOf('/pages/cart/cart') !== -1 ||
-												backToPage.indexOf('/pages/notify/notify') !== -1 ||
-												backToPage.indexOf('/pages/index/index') !== -1 ||
-												backToPage.indexOf('/pages/category/category') !== -1
+												backToPage.indexOf('/pages/index/index') !== -1
 											) {
 												_this.$mRouter.reLaunch(JSON.parse(backToPage));
 											} else {
