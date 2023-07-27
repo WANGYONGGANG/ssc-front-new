@@ -95,8 +95,6 @@
 	</view>
 </template>
 <script>
-import $mAssetsPath from "@/config/assets.config";
-import { mapMutations } from "vuex";
 export default {
 	name: "rfProductList",
 	props: {
