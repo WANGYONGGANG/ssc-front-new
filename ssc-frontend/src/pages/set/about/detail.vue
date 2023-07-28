@@ -56,7 +56,7 @@ export default {
 			});
 			this.getConfigList(options.field);
 		},
-		// 获取商城详情
+		// 获取详情
 		async getConfigList(field) {
 			if (field.indexOf('protocol') !== -1) {
 				await this.$http

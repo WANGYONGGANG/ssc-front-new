@@ -1,8 +1,8 @@
 
 // 列表
-const productList = '/tiny-shop/v1/product/product/index';
+const productList = '/product/product/index';
 // 详情
-const productDetail = '/tiny-shop/v1/product/product/view';
-const verBySmsCode = "/tiny-shop/v1/product/product/view";
-const verByPass = "/tiny-shop/v1/product/product/view";
+const productDetail = '/product/product/view';
+const verBySmsCode = "/product/product/view";
+const verByPass = "/product/product/view";
 export { productList, productDetail, verBySmsCode, verByPass };

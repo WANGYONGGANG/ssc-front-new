@@ -3,7 +3,7 @@
 const transmitCreate = '';
 
 // 配置
-const configList = '';
+const configList = "/protocol";
 
 
 export {

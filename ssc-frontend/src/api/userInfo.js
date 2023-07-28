@@ -1,8 +1,8 @@
 
 // 个人信息
-const memberInfo = '/tiny-shop/v1/member/member/index';
+const memberInfo = '/member/member/index';
 // 个人信息修改
-const memberUpdate = '/tiny-shop/v1/member/member/update';
+const memberUpdate = '/member/member/update';
 
 
 export {

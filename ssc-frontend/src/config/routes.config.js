@@ -14,26 +14,26 @@
 export default {
 	// 权限路由 在main.js可实现路由拦截 所以路由都需要注册 待完善
 	promoCode: {
-		name: '',
-		path: '',
-		requiresAuth: true
+		name: "我的",
+		path: "/pages/profile/profile",
+		requiresAuth: true,
 	},
 
 	// 非权限路由
 	main: {
-		name: '首页',
-		path: '/pages/index/index'
+		name: "我的",
+		path: "/pages/profile/profile",
 	},
 	login: {
-		name: '登录',
-		path: '/pages/public/login'
+		name: "登录",
+		path: "/pages/public/login",
 	},
 	index: {
-		name: '注册',
-		path: '/pages/public/register'
+		name: "注册",
+		path: "/pages/public/register",
 	},
 	loginType: {
-		name: '登录类型',
-		path: '/pages/public/logintype'
-	}
+		name: "登录类型",
+		path: "/pages/public/logintype",
+	},
 };
