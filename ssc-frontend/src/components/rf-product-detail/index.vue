@@ -31,7 +31,7 @@
 						:key="index"
 					>
 						<view class="image-wrapper">
-							<image :src="item" class="loaded" mode="aspectFill"></image>
+							<image :src="item.imgurl" class="loaded" mode="aspectFill"></image>
 						</view>
 					</swiper-item>
 				</swiper>
