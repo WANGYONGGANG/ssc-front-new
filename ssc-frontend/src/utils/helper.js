@@ -1,18 +1,18 @@
 /* eslint-disable */
-import mRouter from '@/utils/router';
-import mConstDataConfig from '@/config/constData.config';
-import mStore from '@/store';
-import appShare from '@/utils/share';
+import mRouter from "@/utils/router";
+import mConstDataConfig from "@/config/constData.config";
+import mStore from "@/store";
+import appShare from "@/utils/share";
 // #ifdef H5
-import jweixin from '@/common/jweixin';
-import $mPayment from '@/utils/payment';
+import jweixin from "@/common/jweixin";
+import $mPayment from "@/utils/payment";
 // #endif
 //常用方法集合
 export default {
 	/**
 	 * toast提示
 	 */
-	toast(title, duration = 3000, mask = false, icon = 'none') {
+	toast(title, duration = 3000, mask = false, icon = "none") {
 		if (Boolean(title) === false) {
 			return;
 		}
@@ -20,7 +20,7 @@ export default {
 			title,
 			duration,
 			mask,
-			icon
+			icon,
 		});
 	},
 	/**
@@ -42,11 +42,11 @@ export default {
 		params.route = `/${currentPage.route}`;
 		params.query = currentPage.options;
 		// #endif
-		uni.setStorageSync('backToPage', JSON.stringify(params));
+		uni.setStorageSync("backToPage", JSON.stringify(params));
 		uni.removeTabBarBadge({ index: mConstDataConfig.cartIndex });
 		uni.removeTabBarBadge({ index: mConstDataConfig.notifyIndex });
-		await mStore.commit('logout');
-		mRouter.push({ route: '/pages/public/logintype' });
+		await mStore.commit("logout");
+		mRouter.push({ route: "/pages/public/logintype" });
 	},
 	/**
 	 * 返回上一页携带参数
@@ -64,7 +64,7 @@ export default {
 	 * @param {Object} title
 	 */
 	log(title) {
-		if (process.env.NODE_ENV === 'development' && Boolean(title) === true) {
+		if (process.env.NODE_ENV === "development" && Boolean(title) === true) {
 			console.log(JSON.stringify(title));
 		}
 	},
@@ -79,7 +79,7 @@ export default {
 				},
 				fail(e) {
 					reject(e.message);
-				}
+				},
 			});
 		});
 	},
@@ -94,7 +94,7 @@ export default {
 				},
 				fail(e) {
 					reject(e.message);
-				}
+				},
 			});
 		});
 	},
@@ -120,19 +120,19 @@ export default {
 	 * 获取ios的IDFA
 	 */
 	getIdfa() {
-		let idfa = '';
+		let idfa = "";
 		try {
-			if ('iOS' == plus.os.name) {
-				let manager = plus.ios.invoke('ASIdentifierManager', 'sharedManager');
-				if (plus.ios.invoke(manager, 'isAdvertisingTrackingEnabled')) {
-					let identifier = plus.ios.invoke(manager, 'advertisingIdentifier');
-					idfa = plus.ios.invoke(identifier, 'UUIDString');
+			if ("iOS" == plus.os.name) {
+				let manager = plus.ios.invoke("ASIdentifierManager", "sharedManager");
+				if (plus.ios.invoke(manager, "isAdvertisingTrackingEnabled")) {
+					let identifier = plus.ios.invoke(manager, "advertisingIdentifier");
+					idfa = plus.ios.invoke(identifier, "UUIDString");
 					plus.ios.deleteObject(identifier);
 				}
 				plus.ios.deleteObject(manager);
 			}
 		} catch (e) {
-			console.error('获取idfa失败');
+			console.error("获取idfa失败");
 		}
 		return idfa;
 	},
@@ -141,7 +141,7 @@ export default {
 	 * 例子：{a:1,b:2} => a=1&b=2
 	 */
 	objParseParam(obj) {
-		let paramsStr = '';
+		let paramsStr = "";
 		if (obj instanceof Array) return paramsStr;
 		if (!(obj instanceof Object)) return paramsStr;
 		for (let key in obj) {
@@ -154,12 +154,12 @@ export default {
 	 * 例子：{a:1,b:2} => /pages/index/index?a=1&b=2
 	 */
 	objParseUrlAndParam(path, obj) {
-		let url = path || '/';
-		let paramsStr = '';
+		let url = path || "/";
+		let paramsStr = "";
 		if (obj instanceof Array) return url;
 		if (!(obj instanceof Object)) return url;
 		paramsStr = this.objParseParam(obj);
-		paramsStr && (url += '?');
+		paramsStr && (url += "?");
 		url += paramsStr;
 		return url;
 	},
@@ -167,13 +167,13 @@ export default {
 	 * 获取url字符串参数
 	 */
 	getRequestParameters(locationhref) {
-		let href = locationhref || '';
+		let href = locationhref || "";
 		let theRequest = new Object();
-		let str = href.split('?')[1];
+		let str = href.split("?")[1];
 		if (str != undefined) {
-			let strs = str.split('&');
+			let strs = str.split("&");
 			for (let i = 0; i < strs.length; i++) {
-				theRequest[strs[i].split('=')[0]] = strs[i].split('=')[1];
+				theRequest[strs[i].split("=")[0]] = strs[i].split("=")[1];
 			}
 		}
 		return theRequest;
@@ -182,10 +182,10 @@ export default {
 	 * 加密字符串
 	 */
 	strEncode(str) {
-		const key = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		const key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		let l = key.length;
-		let a = key.split('');
-		let s = '',
+		let a = key.split("");
+		let s = "",
 			b,
 			b1,
 			b2,
@@ -205,7 +205,7 @@ export default {
 	 * 解密字符串
 	 */
 	strDecode(str) {
-		const key = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		const key = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		let l = key.length;
 		let b,
 			b1,
@@ -224,7 +224,7 @@ export default {
 			d++;
 			s[i] = b1 * l * l + b2 * l + b3;
 		}
-		b = eval('String.fromCharCode(' + s.join(',') + ')');
+		b = eval("String.fromCharCode(" + s.join(",") + ")");
 		return b;
 	},
 	/**
@@ -232,8 +232,8 @@ export default {
 	 */
 	compareVersion(reqV, curV) {
 		if (curV && reqV) {
-			let arr1 = curV.split('.'),
-				arr2 = reqV.split('.');
+			let arr1 = curV.split("."),
+				arr2 = reqV.split(".");
 			let minLength = Math.min(arr1.length, arr2.length),
 				position = 0,
 				diff = 0;
@@ -261,15 +261,15 @@ export default {
 	 * H5复制
 	 */
 	h5Copy(content) {
-		let textarea = document.createElement('textarea');
+		let textarea = document.createElement("textarea");
 		textarea.value = content;
-		textarea.readOnly = 'readOnly';
+		textarea.readOnly = "readOnly";
 		document.body.appendChild(textarea);
 		textarea.select(); // 选择对象
 		textarea.setSelectionRange(0, content.length); //核心
-		let result = document.execCommand('Copy'); // 执行浏览器复制命令
+		let result = document.execCommand("Copy"); // 执行浏览器复制命令
 		textarea.remove();
-		const msg = result ? '复制成功' : '复制失败';
+		const msg = result ? "复制成功" : "复制失败";
 		this.toast(msg);
 	},
 	/**
@@ -280,114 +280,77 @@ export default {
 			shareUrl,
 			shareTitle,
 			shareContent,
-			shareImg
+			shareImg,
 		};
-		appShare(shareData, res => {});
+		appShare(shareData, (res) => {});
 	},
 
-  async handleWxH5Share(title, desc, link, imgUrl) {
-		// #ifdef H5
-    if ($mPayment.isWechat()) {
-      if (uni.getSystemInfoSync().platform === 'android') {
-        await $mPayment.wxConfigH5(link);
-      }
-      jweixin.ready(function () {
-        // eslint-disable-next-line
-        jweixin.updateAppMessageShareData({
-          title, // 分享标题
-          desc, // 分享描述
-          link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          imgUrl, // 分享图标
-          success: function () {
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function () {
-            // 用户取消分享后执行的回调函数
-          }
-        });
-        // eslint-disable-next-line
-        jweixin.updateTimelineShareData({
-          title, // 分享标题
-          desc, // 分享描述
-          link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-          imgUrl, // 分享图标
-          success: function () {
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function () {
-            // 用户取消分享后执行的回调函数
-          }
-        });
-      });
-    }
-		// #endif
-  },
-
-  // 去掉字符串中的空格
-  trim(str){
-    if (!str) {
-        return '';
-    }
-    return str.replace(/\s*/g,'');
-  },
-
-  // 判断两个对象是否相同
-  isObjectValueEqual(x, y) {
-    // 指向同一内存时
-    if (x === y) {
-      return true;
-    } else if (
-      typeof x == 'object' &&
-      x != null &&
-      typeof y == 'object' && y != null
-    ) {
-      if (Object.keys(x).length != Object.keys(y).length) return false;
-
-      for (var prop in x) {
-        if (y.hasOwnProperty(prop)) {
-          if (!this.isObjectValueEqual(x[prop], y[prop])) return false;
-        } else return false;
-      }
-
-      return true;
-    } else return false;
-  },
-
-	platformGroupFilter () {
-		let platformGroup = 'tinyShop';
+	async handleWxH5Share(title, desc, link, imgUrl) {
 		// #ifdef H5
 		if ($mPayment.isWechat()) {
-			platformGroup = 'tinyShopWechat';
-		} else {
-			platformGroup = 'tinyShopH5';
+			if (uni.getSystemInfoSync().platform === "android") {
+				await $mPayment.wxConfigH5(link);
+			}
+			jweixin.ready(function () {
+				// eslint-disable-next-line
+				jweixin.updateAppMessageShareData({
+					title, // 分享标题
+					desc, // 分享描述
+					link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl, // 分享图标
+					success: function () {
+						// 用户确认分享后执行的回调函数
+					},
+					cancel: function () {
+						// 用户取消分享后执行的回调函数
+					},
+				});
+				// eslint-disable-next-line
+				jweixin.updateTimelineShareData({
+					title, // 分享标题
+					desc, // 分享描述
+					link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					imgUrl, // 分享图标
+					success: function () {
+						// 用户确认分享后执行的回调函数
+					},
+					cancel: function () {
+						// 用户取消分享后执行的回调函数
+					},
+				});
+			});
 		}
 		// #endif
-		// #ifdef MP-QQ
-		platformGroup = 'tinyShopQqMp';
-		// #endif
-		// #ifdef MP-WEIXIN
-		platformGroup = 'tinyShopWechatMp';
-		// #endif
-		// #ifdef MP-ALIPAY
-		platformGroup = 'tinyShopAliMp';
-		// #endif
-		// #ifdef MP-QQ
-		platformGroup = 'tinyShopQqMp';
-		// #endif
-		// #ifdef MP-BAIDU
-		platformGroup = 'tinyShopBaiduMp';
-		// #endif
-		// #ifdef APP-PLUS
-		switch(uni.getSystemInfoSync().platform){
-			case 'android':
-				 platformGroup = 'tinyShopAndroid';
-				 break;
-			case 'ios':
-				 platformGroup = 'tinyShopIos';
-				 break;
-		}
-		// #endif
-		return platformGroup;
 	},
 
+	// 去掉字符串中的空格
+	trim(str) {
+		if (!str) {
+			return "";
+		}
+		return str.replace(/\s*/g, "");
+	},
+
+	// 判断两个对象是否相同
+	isObjectValueEqual(x, y) {
+		// 指向同一内存时
+		if (x === y) {
+			return true;
+		} else if (
+			typeof x == "object" &&
+			x != null &&
+			typeof y == "object" &&
+			y != null
+		) {
+			if (Object.keys(x).length != Object.keys(y).length) return false;
+
+			for (var prop in x) {
+				if (y.hasOwnProperty(prop)) {
+					if (!this.isObjectValueEqual(x[prop], y[prop])) return false;
+				} else return false;
+			}
+
+			return true;
+		} else return false;
+	},
 };

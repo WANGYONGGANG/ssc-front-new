@@ -44,7 +44,6 @@ http.interceptor.request(
 // 刷新refreshToken
 async function handleRefreshToken(refresh_token) {
 	const params = {};
-	params.group = mHelper.platformGroupFilter();
 	params.refresh_token = refresh_token;
 	await http.post(refreshToken, params).then(async r => {
 		store.commit('login', r.data);

@@ -242,7 +242,6 @@ export default {
 			];
 			this.reqBody['promo_code'] = this.registerParams['promoCode'];
 			this.btnLoading = true;
-			this.reqBody.group = this.$mHelper.platformGroupFilter();
 			await this.$http
 				.post(registerByPass, this.reqBody)
 				.then(() => {

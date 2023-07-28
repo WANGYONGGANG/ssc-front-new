@@ -40,22 +40,6 @@
 					@eventClick="navTo('/pages/capital/list')"
 					:title="_i18n.t('profile.myAccount')"
 				></list-cell>
-				<view class="tj-sction">
-					<view
-						class="tj-item"
-						v-for="item in amountList"
-						:key="item.title"
-						@tap="navTo(item.url)"
-					>
-						<text
-							class="num"
-							:class="item.value > 0 ? 'text-' + themeColor.name : ''"
-						>
-							{{ item.value }}
-						</text>
-						<text>{{ item.title }}</text>
-					</view>
-				</view>
 			</view>
 		</view>
 		<!--页面加载动画-->
@@ -82,7 +66,6 @@ export default {
 	},
 	data() {
 		return {
-			amountList: this.$mConstDataConfig.amountList,
 			headImg: this.$mAssetsPath.headImg,
 			arc: this.$mAssetsPath.arc,
 			userBg: this.$mAssetsPath.userBg,
@@ -94,42 +77,18 @@ export default {
 				promoter: null, 
 			},
 			loading: true,
-			appName: this.$mSettingConfig.appName,
 			hasLogin: false,
-			currentLanguage: this._i18n.locale === "zh" ? "English" : "中文",
 		};
 	},
 	
 	computed: {},
-	// 小程序分享
-	onShareAppMessage() {
-		return {
-			title: ``,
-			path: "/pages/index/index",
-		};
-	},
 	async onShow() {
 		// 初始化数据
 		await this.initData();
 	},
 
 	methods: {
-		// 分享
-		share() {
-			const url = `${this.$mConfig.hostUrl}/pages/index/index`;
-			// #ifdef H5
-			this.$mHelper.h5Copy(url);
-			// #endif
-			// #ifdef APP-PLUS
-			const shareImg = `${this.$mSettingConfig.appLogo}`;
-			this.$mHelper.handleAppShare(
-				url,
-				this.appName,
-				``,
-				shareImg
-			);
-			// #endif
-		},
+	
 		...mapMutations(["login"]),
 		// 数据初始化
 		async initData() {
@@ -291,32 +250,6 @@ page {
 		.promotion-center {
 			background: #fff;
 			margin-bottom: 20upx;
-		}
-
-		.tj-sction {
-			@extend %section;
-			display: flex;
-
-			.tj-item {
-				@extend %flex-center;
-				flex: 1;
-				flex-direction: column;
-				margin: 30upx 0;
-				font-size: $font-sm;
-				color: #75787d;
-				/*border-right: 2upx solid rgba(0, 0, 0, 0.2);*/
-			}
-
-			/*.tj-item:last-child {*/
-			/*border-right: none;*/
-			/*}*/
-			.num {
-				font-size: $font-base;
-			}
-
-			.red {
-				color: $base-color;
-			}
 		}
 
 	}

@@ -263,7 +263,6 @@ export default {
 				this.$mHelper.toast(this.$mGraceChecker.error);
 				return;
 			}
-			this.reqBody.group = this.$mHelper.platformGroupFilter();
 			this.handleLogin(this.reqBody, verApi);
 		},
 		async handleLogin(params, verApi) {

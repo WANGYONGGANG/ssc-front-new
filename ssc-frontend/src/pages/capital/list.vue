@@ -124,7 +124,7 @@ export default {
 						uni.stopPullDownRefresh();
 					}
 					this.loadingType = r.data.length === 10 ? "more" : "nomore";
-					this.productList = [...this.productList, ...r.data];
+					this.productList = [...this.productList, ...r.data.list];
 				})
 				.catch((err) => {
 					this.errorInfo = err;

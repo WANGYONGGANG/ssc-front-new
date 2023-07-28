@@ -13,7 +13,7 @@
 				>
 					<view class="rf-product-image-wrapper">
 						<image
-							:src="item.picture"
+							:src="item.imgsrc"
 							mode="widthFix"
 							:preview="false"
 							:class="[isList ? 'rf-product-list-img' : 'rf-product-img']"
@@ -39,7 +39,7 @@
 				>
 					<view class="rf-product-image-wrapper">
 						<image
-							:src="item.picture"
+							:src="item.imgsrc"
 							mode="widthFix"
 							:preview="false"
 							:class="[isList ? 'rf-product-list-img' : 'rf-product-img']"

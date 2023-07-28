@@ -426,7 +426,6 @@ export default {
 				this.$mHelper.toast(this.$mGraceChecker.error);
 				return;
 			}
-			this.reqBody.group = this.$mHelper.platformGroupFilter();
 			const backUrl = uni.getStorageSync('backToPage');
 			if (backUrl.indexOf('promo_code') !== -1) {
 				this.reqBody.promo_code = JSON.parse(backUrl)['query']['promo_code'];
@@ -513,7 +512,6 @@ export default {
 				];
 			this.reqBody['promo_code'] = this.registerParams['promoCode'];
 			this.btnLoading = true;
-			this.reqBody.group = this.$mHelper.platformGroupFilter();
 			await this.$http
 				.post(registerByPass, this.reqBody)
 				.then(() => {

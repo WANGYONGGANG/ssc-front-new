@@ -286,7 +286,6 @@ export default {
 			this.reqBody['password_repetition'] = this.resetPasswordParams[
 				'password_repetition'
 			];
-			this.reqBody.group = this.$mHelper.platformGroupFilter();
 			await this.$http
 				.post(updatePassword, this.reqBody)
 				.then(() => {
