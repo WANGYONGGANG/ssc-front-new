@@ -7,100 +7,159 @@
 
 export default {
 	/* 用户密码登录 */
-	loginByPassRule: [{
-		name: 'mobile',
-		checkType: 'notnull',
-		checkRule: '',
-		errorMsg: '手机号不能为空'
-	}, {
-		name: 'mobile',
-		checkType: 'phoneno',
-		checkRule: '',
-		errorMsg: '手机号格式不正确'
-	}, {
-		name: 'password',
-		checkType: 'string',
-		checkRule: '6,18',
-		errorMsg: '请输入6-18位密码'
-	}],
+	loginByPassRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+		{
+			name: "password",
+			checkType: "string",
+			checkRule: "6,18",
+			errorMsg: "请输入6-18位密码",
+		},
+	],
 
 	/* 用户验证码登录 */
-	loginByCodeRule: [{
-		name: 'mobile',
-		checkType: 'notnull',
-		checkRule: '',
-		errorMsg: '手机号不能为空'
-	}, {
-		name: 'mobile',
-		checkType: 'phoneno',
-		checkRule: '',
-		errorMsg: '手机号格式不正确'
-	}, {
-		name: 'code',
-		checkType: 'string',
-		checkRule: '4',
-		errorMsg: '请输入4位验证码'
-	}],
+	loginByCodeRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+		{
+			name: "code",
+			checkType: "string",
+			checkRule: "4",
+			errorMsg: "请输入4位验证码",
+		},
+	],
 
 	/* 发送验证码验证手机号 */
-	sendCodeRule: [{
-		name: 'mobile',
-		checkType: 'notnull',
-		checkRule: '',
-		errorMsg: '手机号不能为空'
-	}, {
-		name: 'mobile',
-		checkType: 'phoneno',
-		checkRule: '',
-		errorMsg: '手机号格式不正确'
-	}],
-	
+	sendCodeRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+	],
+
+	verByPassRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+		{
+			name: "password",
+			checkType: "string",
+			checkRule: "6,18",
+			errorMsg: "请输入6-18位密码",
+		},
+	],
+	verByCodeRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+		{
+			name: "code",
+			checkType: "string",
+			checkRule: "4",
+			errorMsg: "请输入4位验证码",
+		},
+	],
 
 	/* 用户注册 */
-	registerRule: [{
-		name: 'mobile',
-		checkType: 'notnull',
-		checkRule: '',
-		errorMsg: '手机号不能为空'
-	}, {
-			name: 'mobile',
-			checkType: 'phoneno',
-			checkRule: '',
-			errorMsg: '手机号格式不正确'
-		}, {
-			name: 'code',
-			checkType: 'string',
-			checkRule: '4',
-			errorMsg: '请输入4位验证码'
-		}, {
-			name: 'password',
-			checkType: 'string',
-			checkRule: '6,18',
-			errorMsg: '请输入6-18位密码'
-		}
+	registerRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+		{
+			name: "code",
+			checkType: "string",
+			checkRule: "4",
+			errorMsg: "请输入4位验证码",
+		},
+		{
+			name: "password",
+			checkType: "string",
+			checkRule: "6,18",
+			errorMsg: "请输入6-18位密码",
+		},
 	],
 
 	/* 密码重置 */
-	resetPasswordRule: [{
-		name: 'mobile',
-		checkType: 'notnull',
-		checkRule: '',
-		errorMsg: '手机号不能为空'
-	}, {
-			name: 'mobile',
-			checkType: 'phoneno',
-			checkRule: '',
-			errorMsg: '手机号格式不正确'
-		}, {
-			name: 'code',
-			checkType: 'string',
-			checkRule: '4',
-			errorMsg: '请输入4位验证码'
-		}, {
-			name: 'password',
-			checkType: 'string',
-			checkRule: '6,18',
-			errorMsg: '请输入6-18位密码'
-		}
-	]
+	resetPasswordRule: [
+		{
+			name: "mobile",
+			checkType: "notnull",
+			checkRule: "",
+			errorMsg: "手机号不能为空",
+		},
+		{
+			name: "mobile",
+			checkType: "phoneno",
+			checkRule: "",
+			errorMsg: "手机号格式不正确",
+		},
+		{
+			name: "code",
+			checkType: "string",
+			checkRule: "4",
+			errorMsg: "请输入4位验证码",
+		},
+		{
+			name: "password",
+			checkType: "string",
+			checkRule: "6,18",
+			errorMsg: "请输入6-18位密码",
+		},
+	],
 };

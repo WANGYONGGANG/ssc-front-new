@@ -20,12 +20,7 @@
 		<rf-product-list :bottom="bottom" :list="list.length > 0 ? list : [0, 0]"></rf-product-list>
 	</view>
 </template>
-<script>/**
- *@des 首页楼层组件
- *@author stav stavyan@qq.com
- *@blog https://stavtop.club
- *@date 2020/01/08 11:28:39
- */
+<script>
 import $mAssetsPath from '@/config/assets.config';
 import rfProductList from '@/components/rf-product-list';
 export default {

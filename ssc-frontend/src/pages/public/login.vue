@@ -13,9 +13,6 @@
 						欢迎回来！
 					</view>
 					<view class="input-content">
-						<!--<view class="btn-group">-->
-						<!--<button type="primary" @tap="loginTest('15083980039', '123456')">小明-父</button>-->
-						<!--</view>-->
 						<view class="input-item">
 							<text class="tit">手机号码</text>
 							<input
