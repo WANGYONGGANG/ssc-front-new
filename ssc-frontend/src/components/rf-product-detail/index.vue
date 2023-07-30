@@ -31,7 +31,12 @@
 						:key="index"
 					>
 						<view class="image-wrapper">
-							<image :src="item.imgurl" class="loaded" mode="aspectFill"></image>
+							<image
+								:src="item.url"
+								class="loaded"
+								mode="aspectFill"
+								@tap.stop="previewImage(index, product.imagesArrStr)"
+							></image>
 						</view>
 					</swiper-item>
 				</swiper>
@@ -46,17 +51,13 @@
 			</view>
 			<!--商品参数-->
 			<view class="c-list">
-				<rf-item-popup title="作者">
+				<rf-item-popup
+					:title="item.attrName"
+					v-for="(item, index) in product.productAttr"
+					:key="index"
+				>
 					<view slot="content">
-						<text class="con t-r">王一二</text>
-					</view>
-					<!-- <view slot="right"
-						><text class="iconfont iconyou"></text
-					></view> -->
-				</rf-item-popup>
-				<rf-item-popup title="质地">
-					<view slot="content">
-						<text class="con t-r">未知</text>
+						<text class="con t-r">{{ item.attrValue }}</text>
 					</view>
 					<!-- <view slot="right"
 						><text class="iconfont iconyou"></text
@@ -69,7 +70,67 @@
 				<view class="d-header">
 					<text>商品详情</text>
 				</view>
-				<rf-parser :html="product.intro" lazy-load></rf-parser>
+				<view style="padding: 20rpx 30rpx">
+					<rf-parser :html="product.productContent" lazy-load></rf-parser>
+				</view>
+
+				<view class="carousel">
+					<swiper
+						indicator-dots
+						circular="true"
+						duration="400"
+						controls
+						touchable
+					>
+						<swiper-item
+							class="swiper-item"
+							v-for="(item, index) in product.detailImages"
+							:key="index"
+						>
+							<view class="image-wrapper">
+								<image :src="item.url" class="loaded" mode="aspectFill" @tap.stop="previewImage(index, product.detailImages)"></image>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
+				<view class="carousel">
+					<swiper
+						indicator-dots
+						circular="true"
+						duration="400"
+						controls
+						touchable
+					>
+						<swiper-item
+							class="swiper-item"
+							v-for="(item, index) in product.textureImages"
+							:key="index"
+						>
+							<view class="image-wrapper">
+								<image :src="item.url" class="loaded" mode="aspectFill" @tap.stop="previewImage(index, product.textureImages)"></image>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
+				<view class="carousel">
+					<swiper
+						indicator-dots
+						circular="true"
+						duration="400"
+						controls
+						touchable
+					>
+						<swiper-item
+							class="swiper-item"
+							v-for="(item, index) in product.signImages"
+							:key="index"
+						>
+							<view class="image-wrapper">
+								<image :src="item.url" class="loaded" mode="aspectFill" @tap.stop="previewImage(index, product.signImages)"></image>
+							</view>
+						</swiper-item>
+					</swiper>
+				</view>
 			</view>
 			<!-- 底部操作菜单 -->
 			<view class="page-bottom">
@@ -121,7 +182,7 @@
 										type="number"
 										v-model="verParams.verifiCode"
 										placeholder="请输入验证码"
-										maxlength="4"
+										maxlength="6"
 										data-key="mobile"
 									/>
 								</view>
@@ -201,6 +262,15 @@ export default {
 
 	computed: {},
 	methods: {
+		previewImage(index,urls) {
+			if (!urls) return;
+			let current = urls[index].originalUrl;
+			let newUrls = urls.map((item)=>{item.originalUrl});
+			uni.previewImage({
+				current,
+				urls:newUrls,
+			});
+		},
 		// 发送验证码并进入倒计时
 		async getSmsCode() {
 			this.reqBody["mobile"] = this.verParams["mobile"];

@@ -28,6 +28,30 @@
 					}
 				}
 			}
+		},
+		{
+			"path": "certification",
+			"style": {
+				"navigationBarTitleText": "详情展示",
+				// #ifdef MP
+				"navigationStyle": "custom",
+				// #endif
+				"app-plus": {
+					"bounce": "none",
+					"titleNView": {
+						"type": "transparent"
+						// "buttons": [
+						// 	{
+						// 		"fontSrc": "/static/iconfont.ttf",
+						// 		"text": "\ue6c6",
+						// 		"fontSize": "28",
+						// 		"color": "#303133",
+						// 		"redDot": false
+						// 	}
+						// ]
+					}
+				}
+			}
 		}
 	],
 	"subPackages": [
@@ -75,31 +99,8 @@
 							}
 						}
 					}
-				},
-				{
-					"path": "product",
-					"style": {
-						"navigationBarTitleText": "详情展示",
-						// #ifdef MP
-						"navigationStyle": "custom",
-						// #endif
-						"app-plus": {
-							"bounce": "none",
-							"titleNView": {
-								"type": "transparent"
-								// "buttons": [
-								// 	{
-								// 		"fontSrc": "/static/iconfont.ttf",
-								// 		"text": "\ue6c6",
-								// 		"fontSize": "28",
-								// 		"color": "#303133",
-								// 		"redDot": false
-								// 	}
-								// ]
-							}
-						}
-					}
 				}
+				
 			]
 		},
 		// 公共

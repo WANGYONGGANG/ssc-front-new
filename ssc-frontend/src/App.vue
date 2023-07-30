@@ -25,7 +25,7 @@ export default {
 			// 获取系统title高度
 			await this.initSystemInfo();
 			if (token) {
-				await this.handleVerifyToken(token);
+				//await this.handleVerifyToken(token);
 			}
 			if (this.$mStore.getters.hasLogin) {
 				// #ifdef APP-PLUS

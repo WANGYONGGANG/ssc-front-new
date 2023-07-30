@@ -43,7 +43,7 @@
 										type="number"
 										v-model="loginParams.verifiCode"
 										placeholder="请输入验证码"
-										maxlength="4"
+										maxlength="6"
 										data-key="mobile"
 									/>
 								</view>
@@ -141,7 +141,7 @@
 											class="login-type-input"
 											v-model="loginParams.verifiCode"
 											placeholder="请输入验证码"
-											maxlength="4"
+											maxlength="6"
 										/>
 									</view>
 									<button
@@ -195,7 +195,7 @@
 											class="login-type-input"
 											v-model="registerParams.verifiCode"
 											placeholder="请输入验证码"
-											maxlength="4"
+											maxlength="6"
 										/>
 									</view>
 									<button
@@ -278,7 +278,8 @@ export default {
 			loginParams: {
 				mobile: '',
 				verifiCode: '',
-				password: ''
+				password: '',
+				countryCode:'86'
 			},
 			registerParams: {
 				mobile: '',
@@ -286,7 +287,8 @@ export default {
 				oldPassword: '',
 				promoCode: '',
 				nickname: '',
-				verifiCode: ''
+				verifiCode: '',
+				countryCode:'86'
 			},
 			btnLoading: false,
 			reqBody: {},
@@ -494,6 +496,7 @@ export default {
 			this.reqBody['password'] = this.registerParams['password'];
 			this.reqBody['verifiCode'] = this.registerParams['verifiCode'];
 			this.reqBody['nickname'] = this.registerParams['nickname'];
+			this.reqBody["countryCode"] = this.registerParams["countryCode"];
 			const cheRes = this.$mGraceChecker.check(
 				this.reqBody,
 				this.$mFormRule.registerRule

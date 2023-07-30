@@ -6,7 +6,7 @@
 				<view
 					v-if="(index + 1) % 2 !== 0 || isList"
 					class="rf-product-item"
-					@tap.stop="navTo(`/pages/capital/product?id=${item.productId}`)"
+					@tap.stop="navTo(`/certification?id=${item.productId}`)"
 					:class="[isList ? 'rf-product-flex-list' : '']"
 					hover-class="hover"
 					:hover-start-time="150"
@@ -32,7 +32,7 @@
 				<view
 					v-if="(index + 1) % 2 === 0"
 					class="rf-product-item"
-					@tap.stop="navTo(`/pages/capital/product?id=${item.productId}`)"
+					@tap.stop="navTo(`/certification?id=${item.productId}`)"
 					:class="[isList ? 'rf-product-flex-list' : '']"
 					hover-class="hover"
 					:hover-start-time="150"

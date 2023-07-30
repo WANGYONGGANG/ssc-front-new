@@ -74,7 +74,9 @@ export default {
 		padding: 20upx 30upx;
 		position: relative;
 		.left {
-			width: 140upx;
+			min-width: 176upx;
+			white-space: nowrap;
+			flex-shrink: 0;
 		}
 		.mid {
 			flex: 1;

@@ -198,7 +198,7 @@
 	},
 	"h5" : {
 		"router" : {
-			"mode" : "hash"
+			"mode" : "history"
 		},
 		// history模式地址不带#
 		"async" : {

@@ -27,7 +27,7 @@
 										type="number"
 										v-model="resetPasswordParams.verifiCode"
 										placeholder="请输入验证码"
-										maxlength="4"
+										maxlength="6"
 										data-key="mobile"
 									/>
 								</view>
@@ -117,7 +117,7 @@
 										class="login-type-input"
 										v-model="resetPasswordParams.verifiCode"
 										placeholder="请输入验证码"
-										maxlength="4"
+										maxlength="6"
 									/>
 								</view>
 								<button
@@ -187,7 +187,8 @@ export default {
 				mobile: '',
 				password: '',
 				oldPassword: '',
-				code: ''
+				code: '',
+				countryCode:'86'
 			},
 			btnLoading: false,
 			type: null,

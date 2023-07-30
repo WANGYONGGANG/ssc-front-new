@@ -45,7 +45,7 @@ export default {
 		{
 			name: "code",
 			checkType: "string",
-			checkRule: "4",
+			checkRule: "6",
 			errorMsg: "请输入验证码",
 		},
 	],
@@ -102,7 +102,7 @@ export default {
 		{
 			name: "verifiCode",
 			checkType: "string",
-			checkRule: "4",
+			checkRule: "6",
 			errorMsg: "请输入验证码",
 		},
 	],
@@ -124,7 +124,7 @@ export default {
 		{
 			name: "verifiCode",
 			checkType: "string",
-			checkRule: "4",
+			checkRule: "6",
 			errorMsg: "请输入验证码",
 		},
 		{
@@ -152,7 +152,7 @@ export default {
 		{
 			name: "coverifiCodede",
 			checkType: "string",
-			checkRule: "4",
+			checkRule: "6",
 			errorMsg: "请输入验证码",
 		},
 		{
