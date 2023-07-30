@@ -11,10 +11,10 @@
 				>
 					<image
 						class="portrait"
-						:src="userInfo.head_portrait || headImg"
+						:src="userInfo.memberAvatar || headImg"
 					></image>
 					<text class="username">
-						{{ userInfo.nickname || userInfo.realname || "登录/注册" }}
+						{{ userInfo.memberNickname || userInfo.realname || "登录/注册" }}
 					</text>
 				</view>
 			</view>

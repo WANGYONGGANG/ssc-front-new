@@ -101,7 +101,7 @@
 		},
 		onShow() {
 			this.btnLoading = false;
-			if (uni.getStorageSync('accessToken')) {
+			if (uni.getStorageSync('token')) {
 				this.$mRouter.reLaunch({ route: '/pages/index/index' });
 			}
 		},

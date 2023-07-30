@@ -8,7 +8,7 @@
 			<view class="portrait-box" @tap="uploadImage">
 				<image
 					class="portrait"
-					:src="profileInfo.head_portrait || headImg"
+					:src="profileInfo.memberAvatar || headImg"
 				></image>
 			</view>
 			<!-- #endif -->
@@ -20,7 +20,7 @@
 					selWidth="200px"
 					selHeight="400upx"
 					@upload="handleUploadFile"
-					:avatarSrc="profileInfo.head_portrait || headImg"
+					:avatarSrc="profileInfo.memberAvatar || headImg"
 					avatarStyle="width: 200upx; height: 200upx; border-radius: 100%; border: 6upx solid #fff;"
 				>
 				</avatar>
@@ -181,7 +181,7 @@ export default {
 					name: 'file'
 				})
 				.then(r => {
-					_this.profileInfo.head_portrait = r.data.url;
+					_this.profileInfo.memberAvatar = r.data.url;
 					_this.handleUpdateInfo(_this.profileInfo);
 				});
 		},
@@ -195,7 +195,7 @@ export default {
 		},
 		// 数据初始化
 		initData() {
-			this.token = uni.getStorageSync('accessToken') || undefined;
+			this.token = uni.getStorageSync('token') || undefined;
 			this.getMemberInfo();
 		},
 		// 获取用户信息

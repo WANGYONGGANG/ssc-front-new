@@ -1,6 +1,6 @@
 
 // 列表
-const productList = "/product/list";
+const productList = "/product";
 // 详情
 const productDetail = "/product/ffbc2301-001";
 const verBySmsCode = "/product/product/view";

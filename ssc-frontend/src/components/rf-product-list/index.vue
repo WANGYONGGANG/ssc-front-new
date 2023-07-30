@@ -6,21 +6,21 @@
 				<view
 					v-if="(index + 1) % 2 !== 0 || isList"
 					class="rf-product-item"
-					@tap.stop="navTo(`/pages/capital/product?id=${item.id}`)"
+					@tap.stop="navTo(`/pages/capital/product?id=${item.productId}`)"
 					:class="[isList ? 'rf-product-flex-list' : '']"
 					hover-class="hover"
 					:hover-start-time="150"
 				>
 					<view class="rf-product-image-wrapper">
 						<image
-							:src="item.imgsrc"
+							:src="item.imageStr"
 							mode="widthFix"
 							:preview="false"
 							:class="[isList ? 'rf-product-list-img' : 'rf-product-img']"
 						></image>
 					</view>
 					<view class="rf-pro-content">
-						<view class="rf-pro-tit">{{ item.name }}</view>
+						<view class="rf-pro-tit">{{ item.productName }}</view>
 					</view>
 				</view>
 				<!--商品列表-->
@@ -32,21 +32,21 @@
 				<view
 					v-if="(index + 1) % 2 === 0"
 					class="rf-product-item"
-					@tap.stop="navTo(`/pages/capital/product?id=${item.id}`)"
+					@tap.stop="navTo(`/pages/capital/product?id=${item.productId}`)"
 					:class="[isList ? 'rf-product-flex-list' : '']"
 					hover-class="hover"
 					:hover-start-time="150"
 				>
 					<view class="rf-product-image-wrapper">
 						<image
-							:src="item.imgsrc"
+							:src="item.imageStr"
 							mode="widthFix"
 							:preview="false"
 							:class="[isList ? 'rf-product-list-img' : 'rf-product-img']"
 						></image>
 					</view>
 					<view class="rf-pro-content">
-						<view class="rf-pro-tit">{{ item.name }}</view>
+						<view class="rf-pro-tit">{{ item.productName }}</view>
 					</view>
 				</view>
 				<!--商品列表-->

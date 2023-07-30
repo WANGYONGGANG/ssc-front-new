@@ -4,7 +4,7 @@ import $mConstDataConfig from '@/config/constData.config';
 import $mSettingConfig from '@/config/setting.config';
 
 Vue.use(Vuex);
-const ACCESSTOKEN = uni.getStorageSync('accessToken') || '';
+const ACCESSTOKEN = uni.getStorageSync('token') || '';
 const REFERRER = uni.getStorageSync('referrer') || '';
 const USER = uni.getStorageSync('user') || {};
 const REFRESHTOKEN = uni.getStorageSync('refreshToken') || '';
@@ -15,7 +15,7 @@ const LOCALE = uni.getStorageSync('locale') || 'zh';
 const store = new Vuex.Store({
 	state: {
 		// 用户token
-		accessToken: ACCESSTOKEN,
+		token: ACCESSTOKEN,
 		// 用户信息
 		userInfo: USER.member,
 		// 推荐人
@@ -54,27 +54,25 @@ const store = new Vuex.Store({
 		},
 		// 判断用户是否登录
 		hasLogin: state => {
-			return !!state.accessToken;
+			return !!state.token;
 		}
 	},
 	mutations: {
 		login(state, provider) {
-			state.accessToken = provider.access_token;
+			state.token = provider.token;
 			state.refreshToken = provider.refresh_token;
-			state.userInfo = provider.member;
+			state.userInfo = provider;
 			state.user = provider;
 			uni.setStorageSync('user', provider);
-			uni.setStorageSync('accessToken', provider.access_token);
+			uni.setStorageSync("token", provider.token);
 			uni.setStorageSync('refreshToken', provider.refresh_token);
-			uni.setStorageSync('userInfo', provider.member);
+			uni.setStorageSync('userInfo', provider);
 		},
 		logout(state) {
-			state.accessToken = '';
+			state.token = '';
 			state.refreshToken = '';
 			state.userInfo = {};
-			uni.removeStorageSync('accessToken');
-			uni.removeTabBarBadge({ index: $mConstDataConfig.notifyIndex });
-			uni.removeTabBarBadge({ index: $mConstDataConfig.cartIndex });
+			uni.removeStorageSync('token');
 			uni.removeStorageSync('refreshToken');
 			uni.removeStorageSync('userInfo');
 		},

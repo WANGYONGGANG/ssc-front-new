@@ -25,7 +25,7 @@
 							<view class="tit">验证码</view>
 							<input
 								type="number"
-								v-model="registerParams.code"
+								v-model="registerParams.verifiCode"
 								placeholder="请输入验证码"
 								maxlength="4"
 								data-key="mobile"
@@ -130,7 +130,7 @@ export default {
 		};
 	},
 	onShow() {
-		if (uni.getStorageSync('accessToken')) {
+		if (uni.getStorageSync('token')) {
 			this.$mRouter.reLaunch({ route: '/pages/index/index' });
 		}
 	},

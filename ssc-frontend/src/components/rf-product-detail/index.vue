@@ -5,7 +5,7 @@
 		<text class="back-btn iconfont iconzuo" @tap="navBack"></text>
 		<!--#endif-->
 		<!--header-->
-		<view class="detail" v-if="product.name">
+		<view class="detail" v-if="product.productName">
 			<!--顶部商品轮播图-->
 			<view class="carousel">
 				<swiper
@@ -27,7 +27,7 @@
 					<!--#endif-->
 					<swiper-item
 						class="swiper-item"
-						v-for="(item, index) in product.covers"
+						v-for="(item, index) in product.imagesArrStr"
 						:key="index"
 					>
 						<view class="image-wrapper">
@@ -40,7 +40,7 @@
 			<view class="introduce-section">
 				<view class="introduce-second-line">
 					<view class="title">
-						<text>{{ product.name }}</text>
+						<text>{{ product.productName }}</text>
 					</view>
 				</view>
 			</view>
@@ -252,7 +252,7 @@ export default {
 					this.$mFormRule.verByPassRule
 				);
 			} else {
-				this.reqBody["code"] = this.verParams["verifiCode"];
+				this.reqBody["verifiCode"] = this.verParams["verifiCode"];
 				verApi = verBySmsCode;
 				cheRes = this.$mGraceChecker.check(
 					this.reqBody,
@@ -263,9 +263,9 @@ export default {
 				this.$mHelper.toast(this.$mGraceChecker.error);
 				return;
 			}
-			this.handleLogin(this.reqBody, verApi);
+			this.handleSubmit(this.reqBody, verApi);
 		},
-		async handleLogin(params, verApi) {
+		async handleSubmit(params, verApi) {
 			this.verLoading = true;
 			await this.$http
 				.post(verApi, params)

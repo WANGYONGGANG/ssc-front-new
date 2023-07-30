@@ -409,13 +409,15 @@ export default {
 			let cheRes, loginApi;
 			if (this.loginByPass) {
 				loginApi = loginByPass;
-				this.reqBody['password'] = this.loginParams['password'];
+				this.reqBody['code'] = this.loginParams['password'];
+				this.reqBody['type'] = 'password';
 				cheRes = this.$mGraceChecker.check(
 					this.reqBody,
 					this.$mFormRule.loginByPassRule
 				);
 			} else {
-				this.reqBody['verifiCode'] = this.loginParams['code'];
+				this.reqBody['code'] = this.loginParams['verifiCode'];
+				this.reqBody['type'] = 'verify';
 				loginApi = loginBySmsCode;
 				cheRes = this.$mGraceChecker.check(
 					this.reqBody,
@@ -455,7 +457,7 @@ export default {
 							...oauthClientParams,
 							gender: userInfo.sex || userInfo.gender,
 							oauth_client_user_id: userInfo.openid || userInfo.openId,
-							head_portrait: userInfo.headimgurl || userInfo.avatarUrl
+							memberAvatar: userInfo.memberAvatar || userInfo.avatarUrl
 						});
 					}
 					uni.removeStorageSync('wechatUserInfo');

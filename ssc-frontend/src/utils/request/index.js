@@ -31,7 +31,7 @@ let requests = [];
 http.interceptor.request(
 	config => {
 		/* 请求之前拦截器 */
-		config.header['x-api-key'] = uni.getStorageSync('accessToken');
+		config.header["token"] = uni.getStorageSync("token");
 		// 单商户
 		// config.header['merchant-id'] = uni.getStorageSync('merchantId') || 1;
 		return config;
@@ -64,7 +64,7 @@ http.interceptor.response(
 				isRefreshing = false;
 				// refreshToken 的返回状态为401
 				if (response.config.url === refreshToken) {
-					uni.removeStorageSync('accessToken');
+					uni.removeStorageSync('token');
 					await store.commit('logout');
 					uni.showModal({
 						content: '会话已过期，是否跳转登录页面？',
@@ -79,7 +79,7 @@ http.interceptor.response(
 				} else {
 					// 如果refreshToken为空 则直接跳转登录
 					if (!store.state.refreshToken) {
-						uni.removeStorageSync('accessToken');
+						uni.removeStorageSync('token');
 						await store.commit('logout');
 						uni.showModal({
 							content: '会话已过期，是否跳转登录页面？',

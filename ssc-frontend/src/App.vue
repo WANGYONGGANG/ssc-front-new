@@ -1,7 +1,7 @@
 <script>
 /* eslint-disable */
 import Vue from "vue";
-import { verifyAccessToken } from "@/api/login";
+import { verifyToken } from "@/api/login";
 export default {
 	async onLaunch() {
 		await this.initData();
@@ -21,11 +21,11 @@ export default {
 					});
 				});
 			// 获取页面设置配置
-			const token = uni.getStorageSync("accessToken");
+			const token = uni.getStorageSync("token");
 			// 获取系统title高度
 			await this.initSystemInfo();
 			if (token) {
-				await this.handleVerifyAccessToken(token);
+				await this.handleVerifyToken(token);
 			}
 			if (this.$mStore.getters.hasLogin) {
 				// #ifdef APP-PLUS
@@ -65,8 +65,8 @@ export default {
 			});
 		},
 		// 检验token是否有效
-		async handleVerifyAccessToken(token) {
-			await this.$http.post(verifyAccessToken, { token }).then((r) => {
+		async handleVerifyToken(token) {
+			await this.$http.post(verifyToken, { token }).then((r) => {
 				if (!r.data.token) {
 					this.$mStore.commit("logout");
 				}

@@ -1,8 +1,8 @@
 // 密码注册
-const registerByPass = '/user/register';
+const registerByPass = '/members/mobile';
 
 // 密码登录
-const loginByPass = '/user/login';
+const loginByPass = '/members/login';
 
 // 微信授权登录
 const wechatH5Login = '/third-party/wechat';
@@ -23,7 +23,7 @@ const authLogin = '/member/auth/create';
 const isBindingCheck = '/member/auth/is-binding';
 
 // 手机号登录
-const loginBySmsCode = '/user/mobile-login';
+const loginBySmsCode = "/members/login";
 
 // 获取手机验证码
 const smsCode = "/tool/verify-code";
@@ -35,7 +35,7 @@ const logout = '/user/logout';
 const refreshToken = '/user/refresh';
 
 // 登录令牌有效性检测
-const verifyAccessToken = '/user/verify-access-token';
+const verifyToken = '/user/verify-access-token';
 
 export {
 	registerByPass,
@@ -50,5 +50,5 @@ export {
 	loginBySmsCode,
 	logout,
 	refreshToken,
-	verifyAccessToken
+	verifyToken
 };

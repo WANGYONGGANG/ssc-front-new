@@ -8,13 +8,13 @@
 		<!--回到顶部-->
 		<rf-back-top :scrollTop="scrollTop"></rf-back-top>
 		<!-- 404页面 -->
-		<view v-if="!productDetail.name && !loading">
+		<view v-if="!productDetail.productName && !loading">
 			<rf-no-data :custom="true">
 				<view class="no-data-title">
 					{{ errorInfo || "暂无数据" }}
 				</view>
 				<view
-					@tap="getProductDetail(productDetail.id)"
+					@tap="getProductDetail(productDetail.productId)"
 					slot="refresh"
 					class="spec-color"
 					>重新加载</view

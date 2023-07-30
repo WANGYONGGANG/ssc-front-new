@@ -1,8 +1,8 @@
 
 // 个人信息
-const memberInfo = '/member/member/index';
+const memberInfo = '/members/info';
 // 个人信息修改
-const memberUpdate = '/member/member/update';
+const memberUpdate = '/members/update';
 
 
 export {

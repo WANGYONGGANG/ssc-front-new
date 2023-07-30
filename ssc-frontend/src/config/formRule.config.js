@@ -21,7 +21,7 @@ export default {
 			errorMsg: "手机号格式不正确",
 		},
 		{
-			name: "password",
+			name: "code",
 			checkType: "string",
 			checkRule: "6,18",
 			errorMsg: "请输入6-18位密码",
@@ -46,7 +46,7 @@ export default {
 			name: "code",
 			checkType: "string",
 			checkRule: "4",
-			errorMsg: "请输入4位验证码",
+			errorMsg: "请输入验证码",
 		},
 	],
 
@@ -100,10 +100,10 @@ export default {
 			errorMsg: "手机号格式不正确",
 		},
 		{
-			name: "code",
+			name: "verifiCode",
 			checkType: "string",
 			checkRule: "4",
-			errorMsg: "请输入4位验证码",
+			errorMsg: "请输入验证码",
 		},
 	],
 
@@ -122,10 +122,10 @@ export default {
 			errorMsg: "手机号格式不正确",
 		},
 		{
-			name: "code",
+			name: "verifiCode",
 			checkType: "string",
 			checkRule: "4",
-			errorMsg: "请输入4位验证码",
+			errorMsg: "请输入验证码",
 		},
 		{
 			name: "password",
@@ -150,10 +150,10 @@ export default {
 			errorMsg: "手机号格式不正确",
 		},
 		{
-			name: "code",
+			name: "coverifiCodede",
 			checkType: "string",
 			checkRule: "4",
-			errorMsg: "请输入4位验证码",
+			errorMsg: "请输入验证码",
 		},
 		{
 			name: "password",
