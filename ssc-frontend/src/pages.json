@@ -32,7 +32,7 @@
 		{
 			"path": "certification",
 			"style": {
-				"navigationBarTitleText": "详情展示",
+				"navigationBarTitleText": "作品认证信息",
 				// #ifdef MP
 				"navigationStyle": "custom",
 				// #endif

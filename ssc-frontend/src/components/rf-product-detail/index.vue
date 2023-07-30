@@ -29,13 +29,13 @@
 						class="swiper-item"
 						v-for="(item, index) in product.imagesArrStr"
 						:key="index"
+						@tap.stop="previewImage(index, product.imagesArrStr)"
 					>
 						<view class="image-wrapper">
 							<image
 								:src="item.url"
 								class="loaded"
-								mode="aspectFill"
-								@tap.stop="previewImage(index, product.imagesArrStr)"
+								mode="aspectFit"
 							></image>
 						</view>
 					</swiper-item>
@@ -55,6 +55,7 @@
 					:title="item.attrName"
 					v-for="(item, index) in product.productAttr"
 					:key="index"
+					v-if="item.attrValue"
 				>
 					<view slot="content">
 						<text class="con t-r">{{ item.attrValue }}</text>
@@ -63,17 +64,40 @@
 						><text class="iconfont iconyou"></text
 					></view> -->
 				</rf-item-popup>
+				<rf-item-popup v-if="product.productEdition"
+					title="版次"
+				>
+					<view slot="content">
+						<text class="con t-r">{{ product.productEdition }}</text>
+					</view>
+				</rf-item-popup>
+				<rf-item-popup v-if="product.memberNickname"
+					title="持有人"
+				>
+					<view slot="content">
+						<text class="con t-r">{{ product.memberNickname }}</text>
+					</view>
+				</rf-item-popup>
+				<rf-item-popup v-if="product.productBlockchain"
+					title="区块地址"
+				>
+					<view slot="content">
+						<text class="con t-r">{{ product.productBlockchain }}</text>
+					</view>
+				</rf-item-popup>
 			</view>
 
 			<!--底部商品详情-->
 			<view class="detail-desc">
 				<view class="d-header">
-					<text>商品详情</text>
+					<text>详情</text>
 				</view>
 				<view style="padding: 20rpx 30rpx">
 					<rf-parser :html="product.productContent" lazy-load></rf-parser>
 				</view>
-
+				<view class="d-header">
+					<text>局部图</text>
+				</view>
 				<view class="carousel">
 					<swiper
 						indicator-dots
@@ -86,12 +110,16 @@
 							class="swiper-item"
 							v-for="(item, index) in product.detailImages"
 							:key="index"
+							 @tap.stop="previewImage(index, product.detailImages)"
 						>
 							<view class="image-wrapper">
-								<image :src="item.url" class="loaded" mode="aspectFill" @tap.stop="previewImage(index, product.detailImages)"></image>
+								<image :src="item.url" class="loaded" mode="aspectFit"></image>
 							</view>
 						</swiper-item>
 					</swiper>
+				</view>
+				<!-- <view class="d-header">
+					<text>纹理图</text>
 				</view>
 				<view class="carousel">
 					<swiper
@@ -105,12 +133,16 @@
 							class="swiper-item"
 							v-for="(item, index) in product.textureImages"
 							:key="index"
+							 @tap.stop="previewImage(index, product.textureImages)"
 						>
 							<view class="image-wrapper">
-								<image :src="item.url" class="loaded" mode="aspectFill" @tap.stop="previewImage(index, product.textureImages)"></image>
+								<image :src="item.url" class="loaded" mode="aspectFit"></image>
 							</view>
 						</swiper-item>
 					</swiper>
+				</view> -->
+				<view class="d-header">
+					<text>签名图</text>
 				</view>
 				<view class="carousel">
 					<swiper
@@ -124,22 +156,23 @@
 							class="swiper-item"
 							v-for="(item, index) in product.signImages"
 							:key="index"
+							 @tap.stop="previewImage(index, product.signImages)"
 						>
 							<view class="image-wrapper">
-								<image :src="item.url" class="loaded" mode="aspectFill" @tap.stop="previewImage(index, product.signImages)"></image>
+								<image :src="item.url" class="loaded" mode="aspectFit"></image>
 							</view>
 						</swiper-item>
 					</swiper>
 				</view>
 			</view>
 			<!-- 底部操作菜单 -->
-			<view class="page-bottom">
+			<!-- <view class="page-bottom">
 				<view class="page-bottom-bth-wrapper">
 					<view @tap="zhuanrangShow = true" class="p-b-btn">
 						<text>转让</text>
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		<view
 			class="popup spec show"
@@ -265,7 +298,7 @@ export default {
 		previewImage(index,urls) {
 			if (!urls) return;
 			let current = urls[index].originalUrl;
-			let newUrls = urls.map((item)=>{item.originalUrl});
+			let newUrls = urls.map((item)=>{return item.originalUrl});
 			uni.previewImage({
 				current,
 				urls:newUrls,
