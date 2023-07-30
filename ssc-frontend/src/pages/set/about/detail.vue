@@ -1,30 +1,30 @@
 <template>
 	<view class="about" v-if="!loading">
 		<view class="shop-info " v-if="title === '注册协议'">
-			<view class="about-content" v-if="detail.protocol_register">
-				<rf-parser lazy-load :html="detail.protocol_register"></rf-parser>
+			<view class="about-content" v-if="detail.pageContent">
+				<rf-parser lazy-load :html="detail.pageContent"></rf-parser>
 			</view>
 			<rf-empty
 				:info="`暂无${title}`"
-				v-if="!detail.protocol_register && !loading"
+				v-if="!detail.pageContent && !loading"
 			></rf-empty>
 		</view>
 		<view class="shop-info" v-if="title === '隐私协议'">
-			<view class="about-content" v-if="detail.protocol_privacy">
-				<rf-parser lazy-load :html="detail.protocol_privacy"></rf-parser>
+			<view class="about-content" v-if="detail.pageContent">
+				<rf-parser lazy-load :html="detail.pageContent"></rf-parser>
 			</view>
 			<rf-empty
 				:info="`暂无${title}`"
-				v-if="!detail.protocol_privacy && !loading"
+				v-if="!detail.pageContent && !loading"
 			></rf-empty>
 		</view>
 		<view class="shop-info" v-if="title === '充值协议'">
-			<view class="about-content" v-if="detail.protocol_recharge">
-				<rf-parser lazy-load :html="detail.protocol_recharge"></rf-parser>
+			<view class="about-content" v-if="detail.pageContent">
+				<rf-parser lazy-load :html="detail.pageContent"></rf-parser>
 			</view>
 			<rf-empty
 				:info="`暂无${title}`"
-				v-if="!detail.protocol_recharge && !loading"
+				v-if="!detail.pageContent && !loading"
 			></rf-empty>
 		</view>
 		<rf-empty :info="`暂无${title}`" v-if="!detail && !loading"></rf-empty>

@@ -25,7 +25,7 @@
 									<view class="tit">验证码</view>
 									<input
 										type="number"
-										v-model="resetPasswordParams.code"
+										v-model="resetPasswordParams.verifiCode"
 										placeholder="请输入验证码"
 										maxlength="4"
 										data-key="mobile"
@@ -56,7 +56,7 @@
 							<text class="tit">确认密码</text>
 							<input
 								type="password"
-								v-model="resetPasswordParams.password_repetition"
+								v-model="resetPasswordParams.oldPassword"
 								placeholder="请输入确认密码"
 							/>
 						</view>
@@ -115,7 +115,7 @@
 									<input
 										type="number"
 										class="login-type-input"
-										v-model="resetPasswordParams.code"
+										v-model="resetPasswordParams.verifiCode"
 										placeholder="请输入验证码"
 										maxlength="4"
 									/>
@@ -147,7 +147,7 @@
 							<input
 								class="login-type-input"
 								type="password"
-								v-model="resetPasswordParams.password_repetition"
+								v-model="resetPasswordParams.oldPassword"
 								placeholder="请输入确认密码"
 								maxlength="20"
 							/>
@@ -186,7 +186,7 @@ export default {
 			resetPasswordParams: {
 				mobile: '',
 				password: '',
-				password_repetition: '',
+				oldPassword: '',
 				code: ''
 			},
 			btnLoading: false,
@@ -227,7 +227,7 @@ export default {
 				return;
 			}
 			await this.$http
-				.post(smsCode, {
+				.get(smsCode, {
 					mobile: this.resetPasswordParams.mobile,
 					usage: 'up-pwd'
 				})
@@ -267,7 +267,7 @@ export default {
 		async toUpdatePassword() {
 			this.reqBody['mobile'] = this.resetPasswordParams['mobile'];
 			this.reqBody['password'] = this.resetPasswordParams['password'];
-			this.reqBody['code'] = this.resetPasswordParams['code'];
+			this.reqBody['verifiCode'] = this.resetPasswordParams['code'];
 			const cheRes = this.$mGraceChecker.check(
 				this.reqBody,
 				this.$mFormRule.resetPasswordRule
@@ -278,13 +278,13 @@ export default {
 			}
 			if (
 				this.resetPasswordParams['password'] !==
-				this.resetPasswordParams['password_repetition']
+				this.resetPasswordParams['oldPassword']
 			) {
 				this.$mHelper.toast('两次输入的密码不一致');
 				return;
 			}
-			this.reqBody['password_repetition'] = this.resetPasswordParams[
-				'password_repetition'
+			this.reqBody['oldPassword'] = this.resetPasswordParams[
+				'oldPassword'
 			];
 			await this.$http
 				.post(updatePassword, this.reqBody)

@@ -26,7 +26,7 @@ const isBindingCheck = '/member/auth/is-binding';
 const loginBySmsCode = '/user/mobile-login';
 
 // 获取手机验证码
-const smsCode = '/sms-code';
+const smsCode = "/tool/verify-code";
 
 // 退出登录
 const logout = '/user/logout';

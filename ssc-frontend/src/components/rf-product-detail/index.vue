@@ -119,7 +119,7 @@
 									<view class="tit">验证码</view>
 									<input
 										type="number"
-										v-model="verParams.code"
+										v-model="verParams.verifiCode"
 										placeholder="请输入验证码"
 										maxlength="4"
 										data-key="mobile"
@@ -184,7 +184,7 @@ export default {
 		return {
 			verParams: {
 				mobile: "",
-				code: "",
+				verifiCode: "",
 				password: "",
 			},
 			verLoading: false,
@@ -213,7 +213,7 @@ export default {
 				return;
 			}
 			await this.$http
-				.post(smsCode, {
+				.get(smsCode, {
 					mobile: this.reqBody["mobile"],
 				})
 				.then((r) => {
@@ -252,7 +252,7 @@ export default {
 					this.$mFormRule.verByPassRule
 				);
 			} else {
-				this.reqBody["code"] = this.verParams["code"];
+				this.reqBody["code"] = this.verParams["verifiCode"];
 				verApi = verBySmsCode;
 				cheRes = this.$mGraceChecker.check(
 					this.reqBody,

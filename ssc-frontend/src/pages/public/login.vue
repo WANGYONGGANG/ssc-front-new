@@ -41,7 +41,7 @@
 									<view class="tit">验证码</view>
 									<input
 										type="number"
-										v-model="loginParams.code"
+										v-model="loginParams.verifiCode"
 										placeholder="请输入验证码"
 										maxlength="4"
 										data-key="mobile"
@@ -139,7 +139,7 @@
 										<input
 											type="number"
 											class="login-type-input"
-											v-model="loginParams.code"
+											v-model="loginParams.verifiCode"
 											placeholder="请输入验证码"
 											maxlength="4"
 										/>
@@ -193,7 +193,7 @@
 										<input
 											type="number"
 											class="login-type-input"
-											v-model="registerParams.code"
+											v-model="registerParams.verifiCode"
 											placeholder="请输入验证码"
 											maxlength="4"
 										/>
@@ -225,7 +225,7 @@
 								<input
 									class="login-type-input"
 									type="password"
-									v-model="registerParams.password_repetition"
+									v-model="registerParams.oldPassword"
 									placeholder="请输入确认密码"
 									maxlength="20"
 								/>
@@ -277,16 +277,16 @@ export default {
 		return {
 			loginParams: {
 				mobile: '',
-				code: '',
+				verifiCode: '',
 				password: ''
 			},
 			registerParams: {
 				mobile: '',
 				password: '',
-				password_repetition: '',
+				oldPassword: '',
 				promoCode: '',
 				nickname: '',
-				code: ''
+				verifiCode: ''
 			},
 			btnLoading: false,
 			reqBody: {},
@@ -350,7 +350,7 @@ export default {
 				return;
 			}
 			await this.$http
-				.post(smsCode, {
+				.get(smsCode, {
 					mobile: this.reqBody['mobile'],
 					usage
 				})
@@ -415,7 +415,7 @@ export default {
 					this.$mFormRule.loginByPassRule
 				);
 			} else {
-				this.reqBody['code'] = this.loginParams['code'];
+				this.reqBody['verifiCode'] = this.loginParams['code'];
 				loginApi = loginBySmsCode;
 				cheRes = this.$mGraceChecker.check(
 					this.reqBody,
@@ -490,7 +490,7 @@ export default {
 			}
 			this.reqBody['mobile'] = this.registerParams['mobile'];
 			this.reqBody['password'] = this.registerParams['password'];
-			this.reqBody['code'] = this.registerParams['code'];
+			this.reqBody['verifiCode'] = this.registerParams['verifiCode'];
 			this.reqBody['nickname'] = this.registerParams['nickname'];
 			const cheRes = this.$mGraceChecker.check(
 				this.reqBody,
@@ -502,13 +502,13 @@ export default {
 			}
 			if (
 				this.registerParams['password'] !==
-				this.registerParams['password_repetition']
+				this.registerParams['oldPassword']
 			) {
 				this.$mHelper.toast('两次输入的密码不一致');
 				return;
 			}
-			this.reqBody['password_repetition'] = this.registerParams[
-				'password_repetition'
+			this.reqBody['oldPassword'] = this.registerParams[
+				'oldPassword'
 				];
 			this.reqBody['promo_code'] = this.registerParams['promoCode'];
 			this.btnLoading = true;

@@ -56,7 +56,7 @@
 					<text class="tit">确认密码</text>
 					<input
 						type="password"
-						v-model="registerParams.password_repetition"
+						v-model="registerParams.oldPassword"
 						placeholder="请输入确认密码"
 						maxlength="18"
 					/>
@@ -118,10 +118,10 @@ export default {
 			registerParams: {
 				mobile: '',
 				password: '',
-				password_repetition: '',
+				oldPassword: '',
 				promoCode: '',
 				nickname: '',
-				code: ''
+				verifiCode: ''
 			},
 			btnLoading: false,
 			reqBody: {},
@@ -181,7 +181,7 @@ export default {
 				return;
 			}
 			this.$http
-				.post(smsCode, {
+				.get(smsCode, {
 					mobile: this.registerParams.mobile,
 					usage: 'register'
 				})
@@ -220,7 +220,7 @@ export default {
 			}
 			this.reqBody['mobile'] = this.registerParams['mobile'];
 			this.reqBody['password'] = this.registerParams['password'];
-			this.reqBody['code'] = this.registerParams['code'];
+			this.reqBody['verifiCode'] = this.registerParams['verifiCode'];
 			this.reqBody['nickname'] = this.registerParams['nickname'];
 			const cheRes = this.$mGraceChecker.check(
 				this.reqBody,
@@ -232,13 +232,13 @@ export default {
 			}
 			if (
 				this.registerParams['password'] !==
-				this.registerParams['password_repetition']
+				this.registerParams['oldPassword']
 			) {
 				this.$mHelper.toast('两次输入的密码不一致');
 				return;
 			}
-			this.reqBody['password_repetition'] = this.registerParams[
-				'password_repetition'
+			this.reqBody['oldPassword'] = this.registerParams[
+				'oldPassword'
 			];
 			this.reqBody['promo_code'] = this.registerParams['promoCode'];
 			this.btnLoading = true;
