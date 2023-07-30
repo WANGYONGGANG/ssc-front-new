@@ -810,11 +810,10 @@
 		}
 	}
 	.introduce-second-line {
-		padding-left: $spacing-lg;
+		padding: 10px 15px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-bottom: $spacing-sm;
 		.title {
 			flex: 1;
 			font-size: $font-base + 2upx;
